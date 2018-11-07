@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script  type="text/javascript">
+		$(function(){
+		
+
+			var departmentList;
+
+			$.post("employee/getAllDepartment",null,function(data) {
+				departmentList = data.departmentList;
+				console.log(departmentList);
+				showDepartment()
+			})
+
+			function showDepartment() {
+				var htmls = "";
+				for (var i = 0; i < departmentList.length; i++) {
+					var item = departmentList[i];
+					htmls += "<option value='"+item.id+"'>"+item.departmentName+"</option>";
+				}
+				$("#departmentSelect").html(htmls);
+			}
+			
+		})
+		
+		</script>
+	</head>
+
+	<body>
+		ADD EMPLOYEE 
+		<br>
+		<br>
+		<form action="employee/conversionEmployee">
+			<!-- name-email@cp.com-1-101 -->
+			Employee:<input type="text" name="employee"><br>
+			<input type="submit" value="addEmployee"></input>
+		</form>
+		<br>
+		<br>
+		<form action="employee/add" method="POST" id="employeeForm">
+			name: <input type="text" name="lastName"/><br>
+			email: <input type="text" name="email"/><br>
+			gender: <br>
+				<input type="radio" name="gender" value="1">male</input><br>
+				<input type="radio" name="gender" value="0">female</input><br>
+			birth: <input type="text" name="birth"/><br>
+			department: 
+			<select id="departmentSelect" name="department.id" form="employeeForm">
+
+			</select>
+			<br>
+			<input type="submit" value="addEmp"></input><br>
+		</form>
+		
+		
+		
+	</body>
+	
+</html>

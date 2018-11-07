@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script  type="text/javascript">
+		$(function(){
+		
+
+			console.log("hello jquery");
+
+			var employeeList;
+
+			function getAllEmployee() {
+				$.post("employee/getAllEmployee",null,function(data){
+					employeeList = data.employeeList;
+					console.log(employeeList);
+					showEmployees()
+				})
+			}
+
+			function showEmployees() {
+				if (employeeList&&employeeList.length>0) {
+					var htmls = "<tr><th>ID</th><th>name</th><th>email</th><th>gender</th><th>department</th><th>delete</th></tr>";
+					for (var i = 0; i < employeeList.length; i++) {
+						var item = employeeList[i];
+						htmls += "<tr><td>"+item.id+"</td><td>"+item.lastName+"</td><td>"+item.email+"</td><td>"+(item.gender==0?"female":"male")+"</td><td>"+item.department.departmentName+"</td><td><a href='employee/delete/"+item.id+"'>delete</a></td></tr>";
+					}
+					$("#table").html(htmls);
+
+				} else {
+					$("#table").html("没有employee!!");
+				}
+			}
+
+			getAllEmployee();
+			
+		})
+		
+		</script>
+	</head>
+
+	<body>
+		EMPLOYEE LIST
+		<br>
+		
+		<table id="table" border="1" cellpadding="10" cellspacing="0">
+			
+			
+		
+		</table>
+
+		<a href="add">add</a>
+		
+		
+	</body>
+	
+</html>
+
+

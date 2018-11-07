@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<context:component-scan base-package="org.cp.springmvc"></context:component-scan>
+	
+	 <mvc:default-servlet-handler/>
+	 
+	 <mvc:annotation-driven />
+	 <mvc:annotation-driven conversion-service="conversionService"/>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/htmls/"></property>
+		<property name="suffix" value=".html"></property>
+	</bean>
+	
+	<mvc:view-controller path="/viewController" view-name="view-controller"/>
+	
+	<mvc:view-controller path="/curdList" view-name="crud_list"/>
+	<mvc:view-controller path="/add" view-name="addEmployee"/>
+	
+<!-- 	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<ref bean="employeeConverter"/>
+			</set>
+		</property>
+	</bean>
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<bean class="org.cp.springmvc.interceptors.FirstInterceptor"></bean>
+		<mvc:interceptor>
+			<mvc:mapping path="/test/testServletAPI"/>
+			<bean class="org.cp.springmvc.interceptors.SecondInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

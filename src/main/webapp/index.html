@@ -1,0 +1,74 @@
+<html>
+	<body>
+		<h2>Hello SpringMVC!</h2>
+		
+		
+		<a href="curdList">CRUD List</a>
+		<br><br><br><br>
+		
+		<a href="helloworld">HelloWorld£¬springMVC!</a>
+		<br><br>
+		<a href="test/testRequestMapping">testRequestMapping</a>
+		<br><br>
+		<a href="test/testRequestMethod">testRequestMethod(no ok)</a>
+		<br><br>
+		<form action="test/testRequestMethod" method="POST">
+			<input type="submit">testRequestMethod</input>
+		</form>
+		
+		<a href="test/testParams?id=1&age=11">testParams:params= {"id","age!=10"}</a>
+		<br><br>
+		<a href="test/test/Ant/Path">testAntPath</a>
+		<br><br>
+		<a href="test/testPathVariable/9526">testPathVariable->9526</a>
+		
+		<br><br>
+		<a href="test/testRequestParams?name=fly&age=22">testRequestParams</a>
+		
+		<br><br>
+		<a href="test/testRequestHeader">testRequestHeader</a>
+		
+		<br><br>
+		<a href="test/testCookieValue">testCookieValue</a>
+		
+		<br><br>
+		<form action="test/testPOJO" method="POST">
+			name: <input type="text" name="userName"/>
+			password: <input type="password" name="password"/>
+			email: <input type="text" name="email"/>
+			province: <input type="text" name="address.province"/>
+			city: <input type="text" name="address.city"/>
+			<input type="submit">testPOJO</input>
+		</form>
+	
+		<a href="test/testServletAPI">testServletAPI</a>
+		
+		<br><br>
+		<a href="test/testModelAndView">testModelAndView</a>
+	
+		<form action="test/testModelAttribute" method="POST">
+			name: <input type="text" name="userName"/>
+			email: <input type="text" name="email"/>
+			<input type="submit">testModelAttribute</input>
+		</form>
+		
+		<br><br>
+		<a href="viewController">test view-controller</a>
+		
+		<br><br>
+		<a href="test/testRedirect">test testRedirect</a>
+
+		<br><br>
+		<form action="test/testHttpMessageConverter" method="POST" enctype="multipart/form-data">
+			file: <input type="file" name="file"/>
+			desc: <input type="text" name="desc"/>
+			<input type="submit">testHttpMessageConverter</input>
+		</form>
+
+		<br><br>
+		<a href="test/testExceptionResolver?i=10">test ExceptionResolver</a>
+
+		<br><br>
+		<a href="test/testSimpleMappingExceptionResolver?i=10">test SimpleMappingExceptionResolver</a>
+	</body>
+</html>
